@@ -3,15 +3,13 @@ import asyncio
 from playwright.async_api import async_playwright, TimeoutError
 from bs4 import BeautifulSoup
 
-# Aranacak kelimeler listesi
 KEYWORDS = ["password", "admin", "config", "db_password", "api_key", "secret", "login"]
 
 
 async def process_target(context, subdomain, scan_dir, target_domain):
-    url = f"https://{subdomain}"
+    url = f"http://{subdomain}"
     page = await context.new_page()
 
-    # Üniversite WAF (Güvenlik Duvarı) sistemlerini atlatmak için gerçekçi başlıklar
     await page.set_extra_http_headers({"Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7"})
 
     safe_name = subdomain.replace("://", "_").replace("/", "_")
@@ -24,34 +22,29 @@ async def process_target(context, subdomain, scan_dir, target_domain):
     print(f"[*] İşleniyor: {url}")
 
     try:
-        # Timeout süresini 30 saniyeye çıkardık.
         response = await page.goto(url, timeout=30000, wait_until="domcontentloaded")
         if response:
             status_code = response.status
     except TimeoutError:
-        # EĞER TİMEOUT YERSE ARTIK İPTAL ETMİYORUZ! Sayfa kısmen yüklenmiş olabilir.
         status = "Timeout (Kısmen Yüklendi)"
     except Exception as e:
-        # Eğer site tamamen çökmüşse veya hiç yoksa buradan çıkar.
-        status = "Error (Erişim Yok)"
+        # HATA GİZLEMEYİ KALDIRDIK! Artık Playwright'ın gerçek hatasını göreceğiz.
+        hata_mesaji = str(e).split('\n')[0]  # Hatanın sadece ilk satırını al
+        status = f"Bağlantı Koptu: {hata_mesaji}"
+        print(f"[!] {subdomain} için bağlantı koptu: {hata_mesaji}")
         await page.close()
         return {"subdomain": subdomain, "status": status, "found_keywords": []}
 
     try:
-        # Sitenin ekrana çizilmesi için zorla 2 saniye bekle
         await page.wait_for_timeout(2000)
-
-        # 1. ZORLA EKRAN GÖRÜNTÜSÜ ALMA (Site tam yüklenmese bile çeker)
         await page.screenshot(path=ss_path, full_page=False)
 
-        # 2. İÇERİK ANALİZİ
         content = await page.content()
         soup = BeautifulSoup(content, "html.parser")
         text_content = soup.get_text().lower()
 
         found_words = [word for word in KEYWORDS if word in text_content]
 
-        # --- 3. ANA DOMAİN HTML KAYDETME (Geri Getirildi!) ---
         if subdomain == target_domain:
             html_path = os.path.join(scan_dir, f"{target_domain}_kaynak_kodu.html")
             with open(html_path, "w", encoding="utf-8") as f:
@@ -80,7 +73,6 @@ async def run_scanner(subdomain_list, scan_dir, target_domain):
     results = []
 
     async with async_playwright() as p:
-        # Üniversite ağlarına yüklenmemek için eşzamanlı sayfa sayısını 5'ten 3'e düşürdük
         browser = await p.chromium.launch(headless=True, args=['--ignore-certificate-errors'])
         context = await browser.new_context(
             viewport={'width': 1280, 'height': 720},
@@ -99,7 +91,6 @@ async def run_scanner(subdomain_list, scan_dir, target_domain):
 
         await browser.close()
 
-    # --- TXT RAPOR OLUŞTURMA ---
     notes_path = os.path.join(abs_scan_dir, f"{target_domain}_analiz_raporu.txt")
     with open(notes_path, "w", encoding="utf-8") as f:
         f.write(f"HEDEF ANALİZ RAPORU: {target_domain}\n")

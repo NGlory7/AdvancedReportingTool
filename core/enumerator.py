@@ -57,7 +57,7 @@ def get_subdomains(domain):
 
 
 if __name__ == "__main__":
-    hedef = "kayseri.edu.tr"
+    hedef = ""
     bulunanlar = get_subdomains(hedef)
     for sub in bulunanlar:
         print(sub)
