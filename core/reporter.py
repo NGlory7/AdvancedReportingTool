@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 
-# Fonksiyona port_results eklendi
+
 def generate_reports(results, fuzz_results, port_results, scan_dir, target_domain):
     print("[*] HTML ve TXT Raporları oluşturuluyor...")
 
@@ -10,7 +10,6 @@ def generate_reports(results, fuzz_results, port_results, scan_dir, target_domai
     txt_path = os.path.join(scan_dir, f"{target_domain}_tam_rapor.txt")
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # 1. TXT RAPORU
     with open(txt_path, "w", encoding="utf-8") as f:
         f.write(f"HEDEF ANALİZ RAPORU: {target_domain}\n")
         f.write(f"Tarama Tarihi: {timestamp}\n")
@@ -41,7 +40,7 @@ def generate_reports(results, fuzz_results, port_results, scan_dir, target_domai
 
             f.write("-" * 30 + "\n")
 
-    # 2. HTML RAPORU
+
     html_content = f"""
     <!DOCTYPE html>
     <html lang="tr">

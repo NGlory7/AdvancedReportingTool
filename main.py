@@ -10,7 +10,7 @@ from core.reporter import generate_reports
 from core.fuzzer import run_fuzzer
 from core.portscanner import run_portscanner
 
-# --- TERMINAL RENKLERİ (ANSI CODES) ---
+
 G = '\033[92m'  # Yeşil (Başarılı)
 R = '\033[91m'  # Kırmızı (Hata/Kritik)
 B = '\033[94m'  # Mavi (Bilgi)
@@ -20,14 +20,14 @@ W = '\033[0m'  # Beyaz (Sıfırlama)
 
 def clean_domain(raw_input):
     """Kullanıcının girdiği karmaşık URL'yi saf domaine çevirir."""
-    # Eğer kullanıcı http olmadan girdiyse, parse edebilmek için geçici ekliyoruz
+
     if not raw_input.startswith(('http://', 'https://')):
         raw_input = 'http://' + raw_input
 
     parsed = urlparse(raw_input)
     domain = parsed.netloc
 
-    # Başındaki www. kısmını atıyoruz
+
     if domain.startswith('www.'):
         domain = domain[4:]
     return domain
@@ -43,7 +43,6 @@ async def main():
         print(f"{R}[!] Hedef boş bırakılamaz. Çıkış yapılıyor.{W}")
         return
 
-    # 1. Profesyonel Girdi Temizleme
     target_domain = clean_domain(raw_target)
     print(f"{B}[*] Temizlenen Hedef: {W}{target_domain}")
 
@@ -88,7 +87,7 @@ async def main():
 if __name__ == "__main__":
     try:
         if sys.platform == 'win32':
-            # SUSTURUCU AKTİF: DeprecationWarning uyarılarını ekrandan gizle
+
             warnings.filterwarnings("ignore", category=DeprecationWarning)
             asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 

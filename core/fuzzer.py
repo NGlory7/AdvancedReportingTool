@@ -1,7 +1,7 @@
 import asyncio
 import aiohttp
 
-# vulnweb ve gerçek dünyada en çok karşılaşılan dizinler
+
 WORDLIST = [
     "admin", "login", "wp-admin", "robots.txt", "backup.zip",
     ".git/config", "api", "dashboard", "config.php", "test", "CVS/Entries", "login.php"
@@ -9,7 +9,7 @@ WORDLIST = [
 
 
 async def fuzz_target(session, base_url, path):
-    # Eğer url'nin sonunda / varsa ve wordlist'in başında da / varsa çift // olmasın diye ayarlıyoruz
+
     url = f"{base_url.rstrip('/')}/{path}"
     try:
         async with session.get(url, timeout=10, allow_redirects=False) as response:

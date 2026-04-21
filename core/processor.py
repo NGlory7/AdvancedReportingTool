@@ -28,8 +28,8 @@ async def process_target(context, subdomain, scan_dir, target_domain):
     except TimeoutError:
         status = "Timeout (Kısmen Yüklendi)"
     except Exception as e:
-        # HATA GİZLEMEYİ KALDIRDIK! Artık Playwright'ın gerçek hatasını göreceğiz.
-        hata_mesaji = str(e).split('\n')[0]  # Hatanın sadece ilk satırını al
+
+        hata_mesaji = str(e).split('\n')[0]
         status = f"Bağlantı Koptu: {hata_mesaji}"
         print(f"[!] {subdomain} için bağlantı koptu: {hata_mesaji}")
         await page.close()
