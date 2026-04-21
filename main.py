@@ -1,50 +1,50 @@
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+import asyncio
+import os
+from datetime import datetime
+from core.enumerator import get_subdomains
+from core.processor import run_scanner
 
 
-def gather_recon_data(target_url):
-    print(f"[*] Hedef taranıyor: {target_url}\n")
+async def main():
+    print("=" * 40)
+    print("   PROFESYONEL OSINT TARAYICI v2.1   ")
+    print("=" * 40)
 
-    # Hedef siteye gerçek bir tarayıcı gibi görünmek için User-Agent ekliyoruz (Anti-Bot önlemi)
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
-    try:
-        # Siteye GET isteği atıyoruz
-        response = requests.get(target_url, headers=headers, timeout=10)
-        response.raise_for_status()  # Hata varsa (404, 500 vb.) programı durdurmadan yakalamak için
-    except Exception as e:
-        print(f"[!] Hedefe ulaşılamadı: {e}")
+    target_domain = input("\n[?] Hedef domain (örn: erciyes.edu.tr): ").strip()
+    if not target_domain:
         return
 
-    # Gelen HTML'i BeautifulSoup ile parçalıyoruz
-    soup = BeautifulSoup(response.text, "html.parser")
+    # --- KLASÖRLEME SİSTEMİ ---
+    base_output_dir = os.path.abspath("outputs")
+    os.makedirs(base_output_dir, exist_ok=True)
 
-    # 1. Bütün HTTP/HTTPS Linklerini Çekme
-    print("--- BULUNAN BAĞLANTILAR ---")
-    links = soup.find_all("a", href=True)
-    for link in links:
-        href = link["href"]
-        # Eğer link "/hakkimizda" gibi yarım bir linkse, tam URL'ye çeviriyoruz
-        full_url = urljoin(target_url, href)
-        if full_url.startswith("http"):
-            print(full_url)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+    scan_folder_name = f"{target_domain}_{timestamp}"
+    scan_dir = os.path.join(base_output_dir, scan_folder_name)
 
-    print("\n--- BULUNAN GÖRSELLER (JPEG/PNG) ---")
-    # 2. Bütün Görsel (img) etiketlerini çekme
-    images = soup.find_all("img", src=True)
-    for img in images:
-        img_src = img["src"]
-        full_img_url = urljoin(target_url, img_src)
+    # 1. Aşama: Keşif
+    subdomains = get_subdomains(target_domain)
 
-        # Sadece .jpg, .jpeg ve .png uzantılı olanları filtrele
-        if full_img_url.lower().endswith(('.png', '.jpg', '.jpeg')):
-            print(full_img_url)
+    if not subdomains:
+        print("[-] Hedef bulunamadı veya bağlantı kurulamadı.")
+        return
+
+    # 2. Aşama: Derin Analiz
+    print(f"\n[*] 2. AŞAMA: {len(subdomains)} adet hedef analiz ediliyor...")
+    print(f"[*] Kayıt Klasörü: {scan_dir}\n")
+
+    results = await run_scanner(subdomains, scan_dir, target_domain)
+
+    print("\n" + "=" * 40)
+    print(f" TARAMA TAMAMLANDI - Dosyalar '{scan_dir}' içine kaydedildi. ")
+    print("=" * 40)
+
+    # Sadece kritik bulguları terminale bas (Kalabalık yapmasın)
+    for res in results:
+        if res['status'] == "Success" and res.get('found_keywords'):
+            print(f"[!] KRİTİK BULGU - {res['subdomain']}: {', '.join(res['found_keywords'])}")
 
 
 if __name__ == "__main__":
-    # Buraya test etmek istediğin bir sitenin adresini yazabilirsin (Örn: "https://scrapethissite.com")
-    hedef_site = "https://example.com"
-    gather_recon_data(hedef_site)
+
+    asyncio.run(main())

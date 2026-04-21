@@ -1,0 +1,156 @@
+HEDEF ANALİZ RAPORU: erciyes.edu.tr
+========================================
+
+Hedef: biotools.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bidr.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: cevre.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bbb.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bidb.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: basinyayin.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: abis-files.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bap.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: akademigazete.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: app.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: baum.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: cilab.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: aves.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: apsis.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bidbortamizleme.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bilgiedinme.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: baharsenligi.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: aiite.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: apply.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: 100.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: abisis.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ardektesvik.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ades.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: anket.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ardek.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: abc.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: astronomi.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bapsrv.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: abis.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bkys.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bulten.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bapsrv2.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bilimname.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: arastirmainovasyon.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ahievran.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: adalet.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bakea2019.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ada.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: avesis.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: ataturke.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: animasyon.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: arsiv.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bilisimdestek.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bologna.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bapsis.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bd.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: bm.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: biomed.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: biosoft.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
+Hedef: akademi.erciyes.edu.tr
+Durum: Error (Erişim Yok)
+------------------------------
