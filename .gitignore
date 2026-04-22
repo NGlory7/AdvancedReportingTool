@@ -1,0 +1,16 @@
+# Python sanal ortamı
+.venv/
+venv/
+ENV/
+
+# PyCharm ayarları
+.idea/
+
+# Python geçici dosyaları
+__pycache__/
+*.py[cod]
+
+# Tarama sonuçları ve özel veriler
+scans/
+results.json
+targets.txt
